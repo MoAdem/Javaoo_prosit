@@ -1,20 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package prosit4;
+package prosit5;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-/**
- *
- * @author Mohamed
- */
 public class Magasin {
 
     private int identifiant;
@@ -72,40 +61,32 @@ public class Magasin {
         this.capacite = capacite;
     }
 
-    public void ajouterProduit(int identifiant, String libelle, String marque, double prix, String dateexp) {
+    public void ajouterProduit(Produit q) {
         if (this.capacite < 50) {
 
-            Produit q = new Produit(identifiant, libelle, marque, prix);
 
             if (chercher(q) == true) {
-                System.out.println("Produit Existe");
+                System.out.println("Produit Existe !");
             } else {
                 this.nbrProduits++;
                 this.ensprod[this.capacite] = q;
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                Date dd;
-                try {
-                    dd = formatter.parse(dateexp);
-                    this.ensprod[this.capacite].setDateexp(dd);
-                } catch (ParseException ex) {
-                    Logger.getLogger(Magasin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
                 this.capacite++;
             }
         } else {
-            System.out.println("Capacité Max ");
+            System.out.println("Capacité Max !");
         }
 
     }
 
     public void afficherChara() {
-        System.out.println("Magasin: "  + this.nom +" , " + this.identifiant + " , " + this.addresse + " , " + this.capacite);
-        System.out.println("ces produits : ");
+        System.out.println("Magasin no : " + this.identifiant + " | " + this.addresse + " | " + this.capacite);
+        System.out.println("ces produits ----- : ");
         for (int i = 0; i <= this.capacite - 1; i++) {
-            System.out.println("Produit id : " + this.ensprod[i].getIdentifiant() + " , " + this.ensprod[i].getLibelle() + " , " + this.ensprod[i].getPrix() + " , " + this.ensprod[i].getDateexp());
+            System.out.println("Produit no : " + this.ensprod[i].getIdentifiant() + " | " + this.ensprod[i].getLibelle() + " | " + this.ensprod[i].getPrix() + " | " + this.ensprod[i].getDateexp());
         }
 
-        System.out.println("ces employes: ");
+        System.out.println("ces employes ----- : ");
         for (int i = 0; i <= this.ecapacite - 1; i++) {
             this.employes[i].AfficherDetails() ;
 
@@ -124,7 +105,10 @@ public class Magasin {
             }
         }
         return x;
+
     }
+
+
     public void supprimerProduit(Produit p) {
         var x = false;
         if (this.capacite != 0) {
@@ -142,11 +126,13 @@ public class Magasin {
                     this.capacite--;
                     i = this.capacite;;
                     nbrProduits--;
+
                 }
             }
 
         }
     }
+
     public static void comparerMagasin(Magasin p1, Magasin p2) {
         if (p1.getCapacite() > p2.getCapacite()) {
             System.out.println("Magasin " + p1.getIdentifiant() + " ( " + p1.getAddresse() + " ) a plus produits que magasin " + p2.getIdentifiant() + " ( " + p2.getAddresse() + ")");
@@ -159,10 +145,32 @@ public class Magasin {
 
     public void ajouterEmployee(Employe e){
         if (this.ecapacite < 20) {
+
+
             this.employes[this.ecapacite] = e;
             this.ecapacite++;
+
         } else {
-            System.out.println("Capacité Max");
+            System.out.println("Capacité Max !");
         }
+
+
+
     }
+
+    public float calculStock() {
+        float x = 0 ;
+        for (int i = 0; i < this.capacite; i++) {
+            if (ensprod[i].determinerTypeProduit() == "Fruit")
+            {
+
+                x = x + ((ProduitFruit)ensprod[i]).getQuantite() ;
+            }
+
+        }
+
+
+        return x ;
+    }
+
 }

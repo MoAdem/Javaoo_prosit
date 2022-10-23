@@ -1,19 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package prosit4;
+package prosit5;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
-/**
- *
- * @author Mohamed
- */
 public class Produit {
+
     private int identifiant;
     private String libelle;
     private String marque;
@@ -36,6 +32,16 @@ public class Produit {
         this.libelle = l;
         this.marque = m;
         this.prix = p;
+    }
+
+    public Produit(int i, String l, String m, double p, String d)  throws ParseException {
+        this.identifiant = i;
+        this.libelle = l;
+        this.marque = m;
+        this.prix = p;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date dd = formatter.parse(d);
+        this.dateexp = dd;
     }
 
     public void AfficherDetails() {
@@ -113,6 +119,16 @@ public class Produit {
         }
 
         return x;
+    }
+
+    public String determinerTypeProduit() {
+        if (this instanceof ProduitFruit) {
+            return ("Fruit") ;
+        } else if (this instanceof ProduitLegume) {
+            return ("Légume") ;
+        } else {
+            return ("Autre") ;
+        }
     }
 
 

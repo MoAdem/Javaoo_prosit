@@ -1,4 +1,4 @@
-package prosit4;
+package prosit5;
 
 public class Vendeur extends Employe {
 

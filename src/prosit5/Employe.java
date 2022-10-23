@@ -1,4 +1,4 @@
-package prosit4;
+package prosit5;
 
 public abstract class Employe {
 

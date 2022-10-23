@@ -5,7 +5,7 @@
  */
 package amine;
 
-import prosit4.Produit;
+import prosit5.Produit;
 
 /**
  *
@@ -13,7 +13,7 @@ import prosit4.Produit;
  */
 public class Amine {
     public static void main(String[] args) {
-        Produit p = new Produit();
+
         
     }
 }
